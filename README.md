@@ -15,7 +15,7 @@ simplesh [script files]
 - \ escaping
 - Run script files, as well as commands from standard input
 
-Built-ins:
+**Built-ins:**
 
 - help
 - exit [status]
