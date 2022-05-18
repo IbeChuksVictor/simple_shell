@@ -1,80 +1,102 @@
-#ifndef _SHELL_H_
-#define _SHELL_H_
+#ifndef SHELLH
+#define SHELLH
 
+#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <string.h>
+#include <fcntl.h>
 #include <sys/types.h>
-#include <sys/stat.h>
 #include <sys/wait.h>
-#include <limits.h>
-#include <signal.h>
+#include "history.h"
+#include "shellvars.h"
+/*#include <string.h>*/
 
-/**
- * struct variables - variables
- * @av: command line arguments
- * @buffer: buffer of command
- * @env: environment variables
- * @count: count of commands entered
- * @argv: arguments at opening of shell
- * @status: exit status
- * @commands: commands to execute
- */
-typedef struct variables
-{
-	char **av;
-	char *buffer;
-	char **env;
-	size_t count;
-	char **argv;
-	int status;
-	char **commands;
-} vars_t;
+/* from in.c */
+int shintmode(void);
 
-/**
- * struct builtins - struct for the builtin functions
- * @name: name of builtin command
- * @f: function for corresponding builtin
- */
-typedef struct builtins
-{
-	char *name;
-	void (*f)(vars_t *);
-} builtins_t;
+/* from _printenv.c */
+int _printenv(void);
 
-char **make_env(char **env);
-void free_env(char **env);
+/* from cmdcall.c */
+int builtincall(char *av[]);
+int cmdcall(char *av[], char *path);
 
-ssize_t _puts(char *str);
-char *_strdup(char *strtodup);
-int _strcmpr(char *strcmp1, char *strcmp2);
-char *_strcat(char *strc1, char *strc2);
-unsigned int _strlen(char *str);
+/* from parser.c */
+int parseargs(char **buf);
 
-char **tokenize(char *buffer, char *delimiter);
-char **_realloc(char **ptr, size_t *size);
-char *new_strtok(char *str, const char *delim);
+/* from errhandl.c */
+int errhandl(int status);
 
-void (*check_for_builtins(vars_t *vars))(vars_t *vars);
-void new_exit(vars_t *vars);
-void _env(vars_t *vars);
-void new_setenv(vars_t *vars);
-void new_unsetenv(vars_t *vars);
+/* from _getenv.c and getenviron.c */
+char ***getenviron(void);
+int setallenv(char **environ, char *add);
+char *_getenv(char *avzero);
+int _setenv(char *name, char *val);
+int _unsetenv(char *name);
+char **getallenv(void);
 
-void add_key(vars_t *vars);
-char **find_key(char **env, char *key);
-char *add_value(char *key, char *value);
-int _atoi(char *str);
+/* from string.c */
+size_t _strlen(char *str);
+char *_strcpy(char *dest, char *src);
+int _strcmp(char *, char *);
+char *_strdup(char *str);
+char *_strcat(char *a, char *b);
 
-void check_for_path(vars_t *vars);
-int path_execute(char *command, vars_t *vars);
-char *find_path(char **env);
-int execute_cwd(vars_t *vars);
-int check_for_dir(char *str);
+/* from utility.c */
+char *itos(int digits);
+char *_strchr(char *s, char c);
+int fprintstrs(int fd, char *str, ...);
+int printerr(char *);
+int linecount(int);
 
-void print_error(vars_t *vars, char *msg);
-void _puts2(char *str);
-char *_uitoa(unsigned int count);
+/* from cd.c */
+int _cd(char *av[]);
+
+/* from alias.c */
+int aliascmd(char **av);
+char *getalias(char *name);
+int unsetalias(char *name);
+
+/* from shellvars.c */
+int initsvars(int ac, char **av);
+char *getsvar(char *name);
+int setsvar(char *name, char *val);
+int unsetsvar(char *name);
+ShellVar **getspecial(void);
+ShellVar **getvars(void);
+
+/* from _realloc.c */
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+
+/* from _strtok.c */
+char *strtok(char *str, char *delim);
+
+/* from _getline.c */
+int _getline(char **lineptr, int fd);
+
+char *strtokqe(char *str, char *delim, int escflags);
+
+
+/* from _printenv.c */
+int _printenv(void);
+int _putchar(char c);
+
+/*from history.c*/
+int sethist(char *cmd);
+int print_hist(void);
+int exit_hist(void);
+
+/*from help.c*/
+int help(char *cmd);
+
+/* from exitcleanup.c */
+void exitcleanup(char **av);
+
+/* from _atoi*/
+int _atoi(char *s);
+
+char *_getpid(void);
+
 
 #endif

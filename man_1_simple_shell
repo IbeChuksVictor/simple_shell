@@ -1,4 +1,4 @@
-.TH hsh 1 "21 March 2018" "1.0" "ALX simple_shell Manual"
+.TH hsh 1 "21 March 2018" "1.0" "Holberton simple_shell Manual"
 
 .SH NAME
 hsh \- Simple UNIX shell
@@ -81,12 +81,11 @@ The following builtins are supported by hsh
 - removes alias variable
 
 .SH BUGS
-No known bugs, but hey we aren't perfect. Please report any bugs to the email addresses:
-	Kenney9224@gmail.com
-	ibechuksvictor@gmail.com
+No known bugs, but hey we aren't perfect. Please report any bugs to the twitter\
+ accounts @gjdame or @sidneyriffic
 
 .SH "SEE ALSO"
 .SH sh
 
 .SH "AUTHORS"
-Adedokun Olaitan and Ibegbulem Chukwuma Victor
+Sidney Burkett and Greg Dame
