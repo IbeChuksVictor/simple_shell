@@ -1,9 +1,9 @@
-#Simple Shell
+# Simple Shell
 Run a shell designed to mimic sh. Execute commands and interact with the kernel.
 
 simplesh [script files]
 
-#Current features
+# Current features
 Run commands in $PATH
 Environment and local variables
 $? return values, $$ pid
@@ -25,7 +25,7 @@ cd
 alias
 unalias
 history
-#Getting started
+# Getting started
 To use this shell, we want to compile it and move it into a $PATH folder like /usr/local/bin. To compile the program, clone the project, navigate to the directory, and then type:
 
 gcc -o simplesh *.c
@@ -34,7 +34,7 @@ The copy the output file to /usr/local/bin (you may need to add "sudo" to the fr
 cp simplesh /usr/local/bin
 After this you should be able to run the shell by typing "simplesh".
 
-#Usage Examples
+# Usage Examples
 To start up the shell and run a simple command (in this case pwd), then exit:
 
 Username@your-regular-prompt:~$ simplesh
@@ -55,6 +55,6 @@ Then if we want to pass in an argument we can do it like so:
 Username@your-regular-prompt:~$ ./helloscript "simple shell!"
 Hello simple shell!
 
-#Authors
+# Authors
 Adedokun Olaitan
 Ibegbulem Chukwuma V.
