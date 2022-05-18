@@ -77,12 +77,3 @@ Then if we want to pass in an argument we can do it like so:
 Username@your-regular-prompt:~$ ./helloscript "simple shell!"
 Hello simple shell!
 ```
-
-## Testing
-
-There is a repository for the test suite at https://github.com/sidneyriffic/shelltest.git. Follow the instructions there, and you'll want the shell target to be /bin/sh (the default location for sh).
-
-## Authors
-
-Adedokun Olaitan  
-Ibegbulem Chukwuma Victor
